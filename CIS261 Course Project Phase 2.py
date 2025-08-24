@@ -1,0 +1,20 @@
+#Dwayne Streeter
+#CIS261
+#Course Project Phase 2
+
+def get_dates(): return input("From date (mm/dd/yyyy): "), input("To date (mm/dd/yyyy): ")
+def calc(h,r,t): g = h*r; x = g*t/100; return g, x, g-x
+
+emps, totals = [], {"emp":0,"hrs":0,"gross":0,"tax":0,"net":0}
+while (n := input("Name (or End): ")).lower() != "end":
+    fd, td = get_dates()
+    h, r, t = float(input("Hours: ")), float(input("Rate: ")), float(input("Tax%: "))
+    emps.append((fd, td, n, h, r, t))
+
+for fd, td, n, h, r, t in emps:
+    g, x, net = calc(h, r, t)
+    print(f"{fd}--{td} | {n} | Hrs:{h} | Rate:${r:.2f} | Gross:${g:.2f} | Tax%:{t}% | Tax:${x:.2f} | Net:${net:.2f}")
+    totals["emp"]+=1; totals["hrs"]+=h; totals["gross"]+=g; totals["tax"]+=x; totals["net"]+=net
+
+print(f"\nTotal Emp:{totals['emp']} | Hrs:{totals['hrs']} | Gross:${totals['gross']:.2f} |Tax:${totals['tax']:.2f} | Net:${totals['net']:.2f}")
+
